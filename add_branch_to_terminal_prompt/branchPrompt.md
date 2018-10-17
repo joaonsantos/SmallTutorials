@@ -32,14 +32,14 @@ value.
 ![PS1 Location](https://raw.githubusercontent.com/joaonsantos/SmallTutorials/master/add_branch_to_terminal_prompt/imgs/ps1location.png)
 
 3. Outside of the function paste this function that 
-outputs the branch information to stdout.
+outputs the branch information to stdout, in the place seen in the image.
 ```
 git_branch() {
   git branch 2>/dev/null | grep '^*' | colrm 1 2
 }
 ```
 
-4. Add this function to your prompt variable, with a yellow color, for example:
+4. Replace the PS1 variable on line 67 by adding this function to your prompt variable, with a yellow color, for example:
 ```
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \[\033[0;33m\]$(git_branch)\[\033[00m\]$ '
 ```
