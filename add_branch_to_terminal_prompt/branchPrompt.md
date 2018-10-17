@@ -29,6 +29,8 @@ home folder.
 2. Find the line where the 'PS1' variable is assigned a 
 value.
 
+![PS1 Location](https://raw.githubusercontent.com/joaonsantos/SmallTutorials/master/add_branch_to_terminal_prompt/imgs/ps1location.png)
+
 3. Outside of the function paste this function that 
 outputs the branch information to stdout.
 ```
