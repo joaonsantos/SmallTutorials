@@ -27,22 +27,30 @@ that customizes your default prompt in the bash shell.
 home folder.
 
 2. Find the line where the 'PS1' variable is assigned a 
-value.
+value, in the color enabled prompt, for example.
 
 ![PS1 Location](https://raw.githubusercontent.com/joaonsantos/SmallTutorials/master/add_branch_to_terminal_prompt/imgs/ps1location.png)
 
-3. Outside of the function paste this function that 
-outputs the branch information to stdout, in the place seen in the image.
+3. Paste this function in the file. The function outputs 
+the branch information to stdout, in the place seen in the image.
 ```
 git_branch() {
   git branch 2>/dev/null | grep '^*' | colrm 1 2
 }
 ```
 
-4. Replace the PS1 variable on line 67 by adding this function to your prompt variable, with a yellow color, for example:
+4. Replace the PS1 variable definition line, with the
+   definition below.<br/>
+   The 'git_branch' function output is added to the 
+   prompt and is color coded yellow *( \[\033[0;33m\] )*.
 ```
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \[\033[0;33m\]$(git_branch)\[\033[00m\]$ '
 ```
+
+5. Customize with different color codes and tailor bash prompt
+   to your liking.<br/>
+   More info on this here -> 
+   ![Bash Color Codes](https://unix.stackexchange.com/questions/124407/what-color-codes-can-i-use-in-my-ps1-prompt)
 
 5. Save the file.
 
@@ -51,4 +59,4 @@ PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \[
 source .bashrc
 ```
 
-You should now have a terminal prompt with a yellow color branch information.
+You should now have a terminal prompt with colored branch information.
