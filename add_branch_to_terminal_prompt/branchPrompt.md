@@ -34,8 +34,8 @@ value, in the color enabled prompt, for example.
 3. Paste this function in the file. The function outputs 
 the branch information to stdout, in the place seen in the image.
 ```
-git_branch() {
-  git branch 2>/dev/null | grep '^*' | colrm 1 2
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 ```
 
@@ -44,7 +44,7 @@ git_branch() {
    The 'git_branch' function output is added to the 
    prompt and is color coded yellow *( \[\033[0;33m\] )*.
 ```
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \[\033[0;33m\]$(git_branch)\[\033[00m\]$ '
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[01;33m\]$(parse_git_branch)\[\033[00m\]\$ '
 ```
 
 5. Customize with different color codes and tailor bash prompt
